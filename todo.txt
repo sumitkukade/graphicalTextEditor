@@ -1,0 +1,5 @@
+1. Write API for find and replace
+2 Add window for above
+3 Save as
+4 write api to find string and move carret to that string occur.
+
