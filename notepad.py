@@ -38,7 +38,18 @@ def openFile():
 
 def findAndReplace():
     t = text.get(0.0, END)
-    print "Comming soon Find And Replace"
+    root = Tk()
+    find = Text(root, height=2, width=30)
+    find.pack()
+    find.get()
+    mainloop()
+    print find
+    print t
+
+
+def findAndReplaceRecursively():
+    t = text.get(0.0, END)
+    print t
 
 def findString():
     print "Comming soon Find"
@@ -58,7 +69,11 @@ def placeMenubar():
     filemenu.add_command(label="New",command=newFile)
     filemenu.add_command(label="Open",command=openFile)
     filemenu.add_command(label="Save",command=saveFile)
-#    filemenu.add_command(label="Save as..",command=saveAs)
+#   filemenu.add_command(label="Save as..",command=saveAs)
+    filemenu.add_separator()
+    filemenu.add_command(label="Find", command =findString)
+    filemenu.add_command(label="Find & Replace", command =findAndReplace)
+    filemenu.add_command(label="Find & Replace Recursively", command =findAndReplaceRecursively)
     filemenu.add_separator()
     filemenu.add_command(label="Quit", command = root.quit)
     menubar.add_cascade(label="File",menu=filemenu)
@@ -70,7 +85,8 @@ functionKeyBind = {
         '\x13' : saveFile,
         '\x11' : root.quit,
         '\x06' : findString,
-        '\x08' : findAndReplace,
+        'asdsad`' : findAndReplace,
+        '\x17' : findAndReplaceRecursively,
         '\x0e' : newFile
 }
 
@@ -89,6 +105,7 @@ input_height_window = config.get('Window','height')
 input_width_text = config.get('TextArea','width')
 input_height_text = config.get('TextArea','height')
 
+#other_windows_width =
 
 ####################### Text Configuration  ########################
 text = Text(width=input_width_text,height=input_height_text)
