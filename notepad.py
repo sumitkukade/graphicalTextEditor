@@ -1,12 +1,32 @@
 from Tkinter import *
 from tkFileDialog import *
 import ConfigParser
+import Tkinter
 
 config = ConfigParser.ConfigParser()
 config.read('config')
 filename = "temp.txt"
 
 
+
+class Prompt:
+    def button_action(self):
+        self.find = self.ent.get() #this is the variable I wanna use in another function
+        self.replace = self.ent1.get() #this is the variable I wanna use in another function
+        print self.find
+        print self.replace
+        findAndReplace(self.find,self.replace);
+    def __init__(self, den):
+        self.lbl = Tkinter.Label(den, text="Find")
+        self.ent = Tkinter.Entry(den)
+        self.lbl1 = Tkinter.Label(den, text="Replace")
+        self.ent1 = Tkinter.Entry(den)
+        self.btn = Tkinter.Button(den, text="Find and Replace", command=self.button_action)
+        self.lbl.pack()
+        self.ent.pack()
+        self.lbl1.pack()
+        self.ent1.pack()
+        self.btn.pack()
 
 ####################### Editor APIs ########################
 def newFile():
@@ -36,18 +56,28 @@ def openFile():
     text = text.delete(0.0, END)
     text.insert(0.0,t)
 
-def findAndReplace():
+
+def findAndReplace(find,replace):
     t = text.get(0.0, END)
-    root = Tk()
-    find = Text(root, height=2, width=30)
-    find.pack()
-    find.get()
-    mainloop()
-    print find
-    print t
+    txt = t;
+    while(True):
+        if(txt.find(find)==True):
+            txt = txt.replace(find,replace);
+            print True
+        else:
+            break;
+    #while(txt.find(find)):
+        #txt = txt.replace(find,replace);
+    text.delete(0.0, END)
+    text.insert(0.0,txt);
 
 
 def findAndReplaceRecursively():
+    den = Tkinter.Tk()
+    den.title("Widget Example")
+    prompt = Prompt(den)
+    st = den.mainloop()
+    print st
     t = text.get(0.0, END)
     print t
 
@@ -86,7 +116,7 @@ functionKeyBind = {
         '\x11' : root.quit,
         '\x06' : findString,
         'asdsad`' : findAndReplace,
-        '\x17' : findAndReplaceRecursively,
+        '\x12' : findAndReplaceRecursively,
         '\x0e' : newFile
 }
 
@@ -116,3 +146,9 @@ decorateWindow(input_width_window,input_height_window)
 placeMenubar()
 root.mainloop()
 newFile()
+
+
+
+
+
+
