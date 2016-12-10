@@ -13,9 +13,9 @@ class Prompt:
     def button_action(self):
         self.find = self.ent.get() #this is the variable I wanna use in another function
         self.replace = self.ent1.get() #this is the variable I wanna use in another function
-        print self.find
-        print self.replace
         findAndReplace(self.find,self.replace);
+        self.destroy();
+
     def __init__(self, den):
         self.lbl = Tkinter.Label(den, text="Find")
         self.ent = Tkinter.Entry(den)
@@ -57,18 +57,12 @@ def openFile():
     text.insert(0.0,t)
 
 
-def findAndReplace(find,replace):
+def findAndReplace(findFor, replaceWith):
     t = text.get(0.0, END)
     txt = t;
-    while(True):
-        if(txt.find(find)==True):
-            txt = txt.replace(find,replace);
-            print True
-        else:
-            break;
-    #while(txt.find(find)):
-        #txt = txt.replace(find,replace);
     text.delete(0.0, END)
+    txt = txt.replace(findFor,replaceWith);
+    print txt.find(findFor)
     text.insert(0.0,txt);
 
 
